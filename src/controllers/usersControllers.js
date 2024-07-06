@@ -14,12 +14,12 @@ const registerUser = async (req, res, next) => {
   const SALT = 10;
   const hashedPassword = await bcrypt.hash(req.body.password, SALT);
 
-  const createdUser = await usersService.registerUser({
+  await usersService.registerUser({
     ...req.body,
     password: hashedPassword,
   });
 
-  res.status(201).json({ name: createdUser.name, email: createdUser.email });
+  res.status(201).json();
 };
 
 const loginUser = async (req, res, next) => {
