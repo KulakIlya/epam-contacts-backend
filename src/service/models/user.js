@@ -18,6 +18,7 @@ const schema = new Schema(
         message: 'Email is not valid',
       },
       required: [true, 'Email is required'],
+      unique: true,
     },
     password: {
       type: String,

@@ -21,7 +21,7 @@ coursesRouter.get(
   validateId,
   coursesControllers.getCourse
 );
-coursesRouter.put(
+coursesRouter.patch(
   '/:id',
   authenticate,
   validateId,

@@ -6,6 +6,8 @@ export const getAllAuthors = (id) => Author.find({ owner: id });
 
 export const addAuthor = (authorData) => Author.create(authorData);
 
+export const addManyAuthors = (authors) => Author.insertMany(authors);
+
 export const updateAuthor = (id, authorData) =>
   Author.findByIdAndUpdate(id, authorData, { new: true });
 

@@ -4,7 +4,11 @@ import authorsController from '../controllers/authorsController.js';
 import validateId from '../helpers/validateId.js';
 import authenticate from '../middlewares/authenticate.js';
 import validateBody from '../middlewares/validateBody.js';
-import { addAuthor, updateAuthor } from '../schemas/authorsSchema.js';
+import {
+  addAuthor,
+  addManyAuthors,
+  updateAuthor,
+} from '../schemas/authorsSchema.js';
 
 const authorsRouter = express.Router();
 
@@ -20,6 +24,12 @@ authorsRouter.post(
   authenticate,
   validateBody(addAuthor),
   authorsController.addAuthor
+);
+authorsRouter.post(
+  '/add/many',
+  authenticate,
+  validateBody(addManyAuthors),
+  authorsController.addManyAuthors
 );
 authorsRouter.put(
   '/:id',

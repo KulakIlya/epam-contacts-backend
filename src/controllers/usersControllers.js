@@ -27,7 +27,7 @@ const loginUser = async (req, res, next) => {
 
   const isPasswordCorrect = await bcrypt.compare(
     req.body.password,
-    user.password
+    user?.password ?? ''
   );
 
   if (!user || !isPasswordCorrect)
@@ -41,16 +41,18 @@ const loginUser = async (req, res, next) => {
 
   await usersService.loginUser(user.id, token);
 
-  res.status(200).json({ ...response, token });
+  res.status(200).json({ token });
 };
 
 const logoutUser = async (req, res) => {
   await usersService.logoutUser(req.user.id);
-  res.status(204).json();
+  res.status(204).json({});
 };
 
 const getMe = async (req, res) =>
-  res.status(200).json({ name: req.user.name, email: req.user.email });
+  res
+    .status(200)
+    .json({ data: { name: req.user.name, email: req.user.email } });
 
 export default {
   registerUser: controllerWrapper(registerUser),

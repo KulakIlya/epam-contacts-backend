@@ -27,7 +27,7 @@ const getCourse = async (req, res, next) => {
 
   if (!course) return next(HttpError(404, 'No course found'));
 
-  res.status(200).json(course);
+  res.status(200).json({ data: course });
 };
 
 const updateCourse = async (req, res, next) => {
@@ -38,7 +38,7 @@ const updateCourse = async (req, res, next) => {
 
   if (!updateCourse) return next(HttpError(404, 'No course found'));
 
-  res.status(201).json(updatedCourse);
+  res.status(201).json({ data: updatedCourse });
 };
 
 const deleteCourse = async (req, res, next) => {
@@ -46,7 +46,7 @@ const deleteCourse = async (req, res, next) => {
 
   if (!deletedCourse) return next(HttpError(404, 'No course found'));
 
-  res.status(200).json(deletedCourse);
+  res.status(200).json({ data: deletedCourse });
 };
 
 export default {
